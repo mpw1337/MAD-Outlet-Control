@@ -1,2 +1,4 @@
 pycryptodome==3.9.0
 pytuya==7.0.5
+requests
+python-dateutil
