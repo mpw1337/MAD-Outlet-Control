@@ -1,4 +1,5 @@
 pycryptodome==3.9.0
 pytuya==7.0.5
+logzero  # see github.com/metachris/logzero
 requests
 python-dateutil
