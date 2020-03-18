@@ -29,14 +29,28 @@ def get_status():
 def toggle():
     # Toggle switch state
     logger.info("Toggling state of switch")
-    data = d.set_status(False)  # This requires a valid key
-    if data:
-        logger.info('set_status() result %r' % data)
-
+    success = False
+    while (not success):
+        try:
+            data = d.set_status(False)  # This requires a valid key
+            if (data):
+                logger.info('set_status() result %r' % data)
+                success = True
+        except Exception as e:
+            logger.error("General error {0}".format(e))
+            sleep(5)
+    
     sleep(5)
-    data = d.set_status(True)
-    if data:
-        logger.info('set_status() result %r' % data)
+    success = False
+    while (not success):
+        try:
+            data = d.set_status(True)  # This requires a valid key
+            if (data):
+                logger.info('set_status() result %r' % data)
+                success = True
+        except Exception as e:
+            logger.error("General error {0}".format(e))
+            sleep(5)
     data = d.status()
     logger.info('state (bool, true is ON) %r' % data['dps']['1'])  # Show status of first controlled switch on device
 
