@@ -29,15 +29,14 @@ def get_status():
 def toggle():
     # Toggle switch state
     logger.info("Toggling state of switch")
-    data = d.set_status(not switch_state)  # This requires a valid key
-    switch_state = data['dps']['1']
-
+    data = d.set_status(False)  # This requires a valid key
     if data:
         logger.info('set_status() result %r' % data)
     data = d.set_timer(4)  # This requires a valid key
 
     if data:
         logger.info('set_status() result %r' % data)
+    sleep(5)
     data = d.status()
     logger.info('state (bool, true is ON) %r' % data['dps']['1'])  # Show status of first controlled switch on device
 
@@ -56,7 +55,7 @@ def parse_status(device_status_response):
                 if parsed_device_last_proto_datetime < latest_acceptable_datetime:
                     print("Toggle")
                     toggle()
-                    sleep(60)
+                    sleep(config.ALERT_TIME_MINUTES * 60)
                     break
         except Exception as e:
             logger.error(e)
