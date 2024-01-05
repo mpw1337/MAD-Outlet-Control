@@ -1,4 +1,4 @@
-pycryptodome==3.9.0
+pycryptodome==3.19.1
 pytuya==7.0.5
 logzero  # see github.com/metachris/logzero
 requests
